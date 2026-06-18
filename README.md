@@ -8,6 +8,6 @@ Config files for programs I actively use
 * Git
 * Any Linux distribution
 
-# TODO:
+# Deployment #
 
-ADD `deploy.sh` which symlinks all links inside a `MANIFEST` file
+For linux only, clone the repo somewhere and run `deploy.sh`
