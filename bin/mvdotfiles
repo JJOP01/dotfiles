@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -e
+
+DOTFILES="$HOME/programming/jjop01/dotfiles" # replace
+
+[ $# -eq 1 ] || { echo "Usage: mvdotfiles <filename>"; exit 1; }
+
+FILE="$1"
+
+# check home directory -> quiet stdout -> select first instance
+[ -e "$FILE" ] || FILE="$(find "$HOME" -type f -name "$(basename "$1")" 2>/dev/null | head -n 1)"
+[ -e "$FILE" ] || { echo "File not found in ~/"; exit 1; }
+						     
+BASENAME="$(basename "$FILE")"
+
+mv "$FILE" "$DOTFILES/$BASENAME"
+ln -sf "$DOTFILES/$BASENAME" "$FILE"
+
+echo "Moved and linked: $FILE -> $DOTFILES/$BASENAME"
